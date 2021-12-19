@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hello world</title>
+        <style>
+            table {
+              border-collapse: collapse;
+            }
+
+            ul,ol {
+                display: table;
+                margin: auto;
+                margin-top: 15px;
+            }
+            
+            td, th {
+              border: 1px solid #dddddd;
+              text-align: left;
+              padding: 8px;
+            }
+            
+            tr:nth-child(even) {
+              background-color: #dddddd;
+            }
+
+            .column {
+                float: left;
+                width: 33%;
+                height: 250px;
+                padding: 15px;
+                border-style: solid;
+                border-color: blueviolet;
+                border-radius: 30px;
+            }
+
+                /* Clear floats after the columns */
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+            </style>
+    </head>
+    <body style="font-family: -apple-system, BlinkMacSystemFont, sans-serif; margin:auto; background-color: azure;">
+        <header style="position: relative;text-align: center;color: blueviolet; background-color: beige; padding-top: 30px; padding-bottom: 30px;"><h1><b>Morning sunshine</b></h1></header>
+        <h3 style="position: relative;text-align: center;color:cadetblue;"><u>Here's an underlined heading!</u></h3>
+        <p>Here's a paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis accumsan felis vitae mattis placerat. Sed varius dui vitae ligula pharetra, sed porttitor lectus dignissim. Cras ullamcorper molestie libero, eget tempor lorem convallis eu. Aenean ante leo, ornare rhoncus aliquam posuere, viverra eleifend turpis. Nullam consectetur, urna eu vulputate iaculis, odio quam tempus urna, in luctus dui urna ut ante. In fermentum scelerisque augue, ac efficitur magna viverra a. In sit amet ullamcorper sapien. Etiam fermentum vulputate lectus in porta. In cursus dolor eros, et ullamcorper nunc vestibulum a. Phasellus fringilla arcu condimentum condimentum imperdiet. Pellentesque molestie eros elit, ut maximus nisi vulputate sed. Phasellus vel mi sed ante efficitur dapibus nec sed ex. Mauris ornare ante mauris. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; In eros arcu, ultrices id sapien sit amet, tempus vestibulum erat. Maecenas consectetur ex libero, at ullamcorper metus ornare et.
+        </p>
+        <div class="row" style="padding-top: 20px;">
+        <div class="column">
+            <table style="margin: auto; margin-top: 20px;">
+                <h2>Table</h2>
+            <tr>
+              <th>Company</th>
+              <th>Contact</th>
+              <th>Country</th>
+            </tr>
+            <tr>
+              <td>Alfreds Futterkiste</td>
+              <td>Maria Anders</td>
+              <td>Germany</td>
+            </tr>
+            <tr>
+              <td>Centro comercial Moctezuma</td>
+              <td>Francisco Chang</td>
+              <td>Mexico</td>
+            </tr>
+            <tr>
+              <td>Ernst Handel</td>
+              <td>Roland Mendel</td>
+              <td>Austria</td>
+            </tr>
+        </table></div>
+        <div class="column" style="width: 26.5%; margin-top: -20px;">
+        <h2 style="margin: auto; text-align: center;">An Unordered HTML List</h2>
+
+        <ul>
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Milk</li>
+        </ul>  
+
+        <h2 style="margin: 20px; text-align: center;">An Ordered HTML List</h2>
+
+        <ol>
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Milk</li>
+        </ol>
+        </div>
+
+        
+        
+        <form action="/action_page.php">
+            <div class="column">
+            <label for="fname">First name:</label><br>
+            <input type="text" id="fname" name="fname" required><br>
+            <label for="lname">Last name:</label><br>
+            <input type="text" id="lname" name="lname" required><br><br>
+            <input type="submit" value="Submit">
+        </div>
+        </form>
+
+        </div>
+
+    </body>
+
+    <footer style="text-align: center;">
+        <h1><i>footer</i></h1>
+    </footer>
+</html>
