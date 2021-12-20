@@ -2,18 +2,16 @@ header {
     position: flex;
     left: 23.54%;
     right: 23.54%;
-    top: 9.78%;
+    top: 15%;
     bottom: 76.99%;
 
-/*    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-*/
+    font-family: 'Ubuntu', sans-serif;
 
     font-style: normal;
     font-weight: bold;
     font-size: 96px;
     line-height: 100px;
 
-    align-items: center;
     text-align: center;
 
     color: #EC9F75;
@@ -35,11 +33,11 @@ header {
     position: absolute;
     left: 12%;
     right: 68%;
-    top: 45.01%;
+    top: 40.01%;
     bottom: 39.1%;
 
-/*    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-*/
+    font-family: 'Ubuntu', sans-serif;
+
     font-size: 300%;
 
     align-items: center;
@@ -52,11 +50,10 @@ header {
     position: absolute;
     left: 20%;
     right: auto;
-    top: 38.09%;
+    top: 33.09%;
     bottom: 56.42%;
 
-/*    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-*/
+    font-family: 'Ubuntu', sans-serif;
     font-size: 450%;
 
     display: flex;
@@ -71,11 +68,10 @@ header {
     left: 40%;
     right: auto;
     right: 39.62%;
-    top: 48.07%;
+    top: 43.07%;
     bottom: 36.05%;
 
-/*    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-*/
+    font-family: 'Ubuntu', sans-serif;
     font-size: 300%;
 
     align-items: center;
@@ -88,10 +84,10 @@ header {
     position: absolute;
     left: 48%;
     right: 32%;
-    top: 41.34%;
+    top: 36.34%;
     bottom: 53.16%;
 
-   font-family: sans-serif;
+    font-family: 'Ubuntu', sans-serif;
 
     font-size: 450%;
 
@@ -108,10 +104,10 @@ header {
     position: absolute;
     right: 12%;
     left: 70%;
-    top: 45.01%;
+    top: 40.01%;
     bottom: 39.1%;
 
-    font-family: Play; 
+    font-family: 'Ubuntu', sans-serif; 
 
     font-size: 300%;
 
@@ -125,10 +121,10 @@ header {
     position: absolute;
     left: 77%;
     right: auto;
-    top: 38.09%;
+    top: 33.09%;
     bottom: 56.42%;
 
-    font-family: Play; 
+    font-family: 'Ubuntu', sans-serif; 
     font-size: 450%;
 
     display: flex;
