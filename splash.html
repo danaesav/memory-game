@@ -29,9 +29,13 @@
         </div>
     </div>
 
-    <div class="row">
-        <button class="btn" id="playButton" type="button" onclick="alert('Get ready to play!')">Play</button>
+    <button class="btn" id="playButton" type="button" onclick="document.getElementById('popUp').style.display='block'">Play</button>
 
+    <div id="popUp" class="modal">
+        <h1 id="please">Please Wait</h1>
+        <h2>Finding a match...</h2>
+                
+        <button onclick="document.getElementById('popUp').style.display='none'" type="button" id="cancelbtn">Cancel</button>
     </div>
     
 </body>
