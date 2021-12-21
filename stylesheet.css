@@ -284,7 +284,7 @@ header {
     font-weight: bold;
     border-radius: 60px;
     text-align: center;
-    height: 31%;
+    min-height: 31%;
     width: 24%;
     bottom: 14%;
     border: 5px solid #000000;
@@ -292,8 +292,7 @@ header {
     right: auto;
     top:auto;
     position: absolute;
-    
-    font-size: 3vw;
-    font-size: 3vh;
+    font-size: 1.5vmax;
+    font-size: 2.8vmin;
   }
   
