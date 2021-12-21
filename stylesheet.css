@@ -8,9 +8,8 @@ header {
     position: flex;
     left: 23.54%;
     right: 23.54%;
-    top: 15%;
-    bottom: 76.99%;
-    
+    top: 3%;
+    bottom: auto;
 
     font-family: 'Ubuntu', sans-serif;
 
@@ -26,7 +25,22 @@ header {
 
     -webkit-text-stroke: 3px black;
 }
+.flame{
+  position: absolute;
+  top: 0%;
+  bottom: auto;
+  max-width: 10%;
+}
 
+#leftFlame{
+  left: 0%;
+  right: auto;
+  transform:scaleX(-1);
+}
+#rightFlame{
+  left: auto;
+  right: 0%;
+}
 .column {
     float: left;
     width: 33.33%;
