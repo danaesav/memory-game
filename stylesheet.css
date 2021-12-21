@@ -295,4 +295,26 @@ header {
     font-size: 1.5vmax;
     font-size: 2.8vmin;
   }
+
+  #popUpLead {
+    display: none;
+    background: #66B9A3;
+    color: black;
+    font-size: 145%;
+    line-height: 95%;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    border-radius: 60px;
+    text-align: center;
+    min-height: 31%;
+    width: 24%;
+    bottom: 14%;
+    border: 5px solid #000000;
+    left: auto;
+    right: 75%;
+    top: auto;
+    position: absolute;
+    font-size: 1.5vmax;
+    font-size: 2.8vmin;
+  }
   
