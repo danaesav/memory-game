@@ -33,12 +33,31 @@
         <button class="btn" id="leaderboardButton" type="button">Leaderboard</button>
         <button class="btn" id="rulesButton" type="button">How to play</button>
 
-    <div id="popUp" class="modal">
-        <h1 id="please">Please Wait</h1>
+    <div id="popUp">
+        <h1>Please Wait</h1>
         <h2>Finding a match...</h2>
-                
         <button onclick="document.getElementById('popUp').style.display='none'" type="button" id="cancelbtn">Cancel</button>
     </div>
+
+    <div id="popUpInfo">
+        <h1 style="line-height: 40%;color: #EC9F75;-webkit-text-stroke: 2px black;">How to play</h1>
+        <p>Memory is a card game in
+            <br>which all the cards have a
+            <br>matching pair. In each turn
+            <br>you can see two cards. The
+            <br>aim is to match all of them.
+            <br>First person wins!</p>
+    </div>
+
+    <script>
+        var e = document.getElementById('rulesButton');
+        e.onmouseover = function() {
+          document.getElementById('popUpInfo').style.display = 'block';
+        }
+        e.onmouseout = function() {
+          document.getElementById('popUpInfo').style.display = 'none';
+        }
+        </script>
     
 </body>
 </html>
