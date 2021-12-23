@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memory (Splash Screen)</title>  
+    <title>Memory</title>  
     <link rel="stylesheet" href="stylesheets/splashStyle.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,14 +34,14 @@
         </div>
     </div>
 
-    <button class="btn" id="playButton" type="button" onclick="document.getElementById('popUp').style.display='block'">Play</button>
-    <button class="btn" id="leaderboardButton" type="button">Leaderboard</button>
-    <button class="btn" id="rulesButton" type="button">How to play</button>
+        <button class="btn" id="playButton" type="button" onclick="play()">Play</button>
+        <button class="btn" id="leaderboardButton" type="button">Leaderboard</button>
+        <button class="btn" id="rulesButton" type="button">How to play</button>
 
     <div id="popUp">
         <h1>Please Wait</h1>
         <h2>Finding a match...</h2>
-        <button onclick="document.getElementById('popUp').style.display='none'" type="button" id="cancelbtn">Cancel</button>
+        <button onclick="cancel()" type="button" id="cancelbtn">Cancel</button>
     </div>
 
     <div id="popUpInfo">
@@ -58,6 +58,20 @@
     </div>
 
     <script>
+        var x = true;
+        function cancel() {
+            x = false;
+            document.getElementById('popUp').style.display='none';
+        }
+        function play() {
+            document.getElementById('popUp').style.display='block';
+            setTimeout(function(){
+                if(x){window.location.href='game.html';}
+                x = true;
+            }, 1500); 
+        }
+        
+
         var e = document.getElementById('rulesButton');
         e.onmouseover = function() {
           document.getElementById('popUpInfo').style.display = 'block';
