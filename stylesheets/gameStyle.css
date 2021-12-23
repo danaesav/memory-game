@@ -215,9 +215,6 @@ hr{
     padding: .5em;
     cursor: pointer;
   }
-  li:hover {
-    background-color: #66B9A3;
-  }
   
   ul {
     display: flex;
