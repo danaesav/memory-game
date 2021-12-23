@@ -9,11 +9,73 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;700&display=swap" rel="stylesheets/game">
-</head>
+    <style>
+      li {
+        background-image: url('resources/flame.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    </style>
+  </head>
 <body style="background-color: #66B9A3;">
 
     <header class="dim">Time Left: 60<hr></header>
-    <div id="canvas"></div>
+    <div class="dim" id="canvas">
+        <!--table-->
+        <ul id="outer">
+          <ul style="height: 20%">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+          </ul>
+          <ul style="height: 20%">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li onclick="alert('Hehehe found me!');"></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+          </ul>
+          <ul style="height: 20%">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+          </ul>
+          <ul style="height: 20%">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+          <ul style="height: 20%">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        </ul>
+    </div>
 
     <div>
       <p class="text dim" id="yourScore">Your Score: 0</p>

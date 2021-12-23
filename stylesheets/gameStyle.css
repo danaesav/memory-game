@@ -19,8 +19,8 @@ header {
 
     font-size: 650%;
 
-    font-size: 5vw;
-    font-size: 6vh;
+    font-size: 4vw;
+    font-size: 8vh;
     text-align: center;
 
     -webkit-text-stroke: 2px black;
@@ -99,16 +99,16 @@ hr{
     align-items: center;
     font-weight: bold;
     font-family: 'Ubuntu', sans-serif;
-    font-size: 220%;
-    font-size: 6vh;
-    font-size: 2.3vw;
+    font-size: 300%;
+    font-size: 3.5vh;
+    font-size: 3.3vw;
     
     border-radius: 25px;
 }
 
 #popUpText{
-    font-size: 6vh;
-    font-size: 4vw;
+    font-size: 4vh;
+    font-size: 2.7vw;
 }
 
 #yesBtn{
@@ -172,6 +172,7 @@ hr{
 #popUp {
     display: none; 
     background: #66B9A3;
+    
     border: 5px solid #000000;
     color: #EC9F75; 
     font-size: 150%;
@@ -181,13 +182,48 @@ hr{
     font-weight: bold;
     border-radius: 60px;
     text-align: center;
-    height: 40%;
-    width: 60%;
-    bottom: 30%;
-    left: 19%;
+    height: 30%;
+    width: 45%;
+    bottom: 40%;
+    left: 26.5%;
     right: 22%;
+    height: 25%;
     position: absolute;
     
     font-size: 3vw;
     font-size: 3vh;
+  }
+
+  #outer {
+    border-radius: 15px;
+    padding: .5em;
+    display: block;
+    width: 98.5%;
+    height: 76%;
+    bottom: 50%;
+    font-size: 2vh;
+  }
+  
+  .block,
+  li {
+    border: 2.5px solid black;
+    border-radius: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 86%;
+    width: 10%;
+    padding: .5em;
+    cursor: pointer;
+  }
+  li:hover {
+    background-color: #66B9A3;
+  }
+  
+  ul {
+    display: flex;
+    list-style: none;
+    height: 80%;
+    width: 98.5%;
+    border-radius: 15px;
+    padding: .5em;
   }
