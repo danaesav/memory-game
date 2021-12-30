@@ -216,10 +216,6 @@ hr{
     transition: transform 1s;
     transform-style: preserve-3d;
   }
-
-  .is-flipped {
-    
-  }
   
   ul {
     display: flex;
@@ -229,3 +225,41 @@ hr{
     border-radius: 15px;
     padding: .5em;
   }
+
+  /* .card:hover {
+	-webkit-animation: card 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    animation: card 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    background-color: blueviolet;
+    background-image: none;    
+}
+
+    @-webkit-keyframes card {
+        0% {
+          -webkit-transform: translateY(0) rotateX(0);
+                  transform: translateY(0) rotateX(0);
+          -webkit-transform-origin: 50% 0%;
+                  transform-origin: 50% 0%;
+        }
+        100% {
+          -webkit-transform: translateY(-100%) rotateX(-180deg);
+                  transform: translateY(-100%) rotateX(-180deg);
+          -webkit-transform-origin: 50% 100%;
+                  transform-origin: 50% 100%;
+        }
+      }
+      @keyframes card {
+        0% {
+          -webkit-transform: translateY(0) rotateX(0);
+                  transform: translateY(0) rotateX(0);
+          -webkit-transform-origin: 50% 0%;
+                  transform-origin: 50% 0%;
+        }
+        100% {
+          -webkit-transform: translateY(-100%) rotateX(-180deg);
+                  transform: translateY(-100%) rotateX(-180deg);
+          -webkit-transform-origin: 50% 100%;
+                  transform-origin: 50% 100%;
+        }
+      }
+      
+   */

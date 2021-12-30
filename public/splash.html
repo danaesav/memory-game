@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memory</title>  
     <link rel="stylesheet" href="stylesheets/splashStyle.css">
+    <link rel="script" href="javascripts/splash.js">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;700&display=swap" rel="stylesheet">
@@ -61,45 +62,6 @@
         <h3>Player2:&emsp;&emsp;6</h3>
         <h3>Player3:&emsp;&emsp;7</h3>
     </div>
-
-    <script>
-        var x = true;
-        var toDim = document.querySelectorAll(".dim");
-        function cancel() {
-            x = false;
-            for(e of toDim){
-                e.style.opacity=1;
-            }
-            document.getElementById('popUp').style.display='none';
-        }
-        function play() {
-            document.getElementById('popUp').style.display='block';
-            for(e of toDim){
-                e.style.opacity=0.5;
-                document.getElementById('popUp').style.opacity=1;
-            }
-            setTimeout(function(){
-                if(x){document.getElementById("playForm").submit()}
-                x = true;
-            }, 1500);
-        }
-
-        var e = document.getElementById('rulesButton');
-        e.onmouseover = function() {
-          document.getElementById('popUpInfo').style.display = 'block';
-        }
-        e.onmouseout = function() {
-          document.getElementById('popUpInfo').style.display = 'none';
-        }
-
-        var k = document.getElementById('leaderboardButton');
-        k.onmouseover = function() {
-          document.getElementById('popUpLead').style.display = 'block';
-        }
-        k.onmouseout = function() {
-          document.getElementById('popUpLead').style.display = 'none';
-        }
-    </script>
     
 </body>
 </html>

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memory (Game Screen)</title>  
     <link rel="stylesheet" href="stylesheets/gameStyle.css">
+    <link rel="script" href="javascripts/game.js">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;700&display=swap" rel="stylesheets/game">
@@ -26,54 +27,54 @@
         <!--table-->
         <ul id="outer">
           <ul style="height: 20%">
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
+              <li class="card"></li>
+              <li class="card"></li>
+              <li class="card"></li>
+              <li class="card"></li>
+              <li class="card"></li>
+              <li class="card"></li>
+              <li class="card"></li>
+              <li class="card"></li>
           </ul>
           <ul style="height: 20%">
-              <li></li>
-              <li></li>
-              <li></li>
+              <li class="card"></li>
+              <li class="card"></li>
+              <li class="card"></li>
               <li onclick="alert('Hehehe found me!');"></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
+              <li class="card"></li>
+              <li class="card"></li>
+              <li class="card"></li>
+              <li class="card"></li>
           </ul>
           <ul style="height: 20%">
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
+              <li class="card"></li>
+              <li class="card"></li>
+              <li class="card"></li>
+              <li class="card"></li>
+              <li class="card"></li>
+              <li class="card"></li>
+              <li class="card"></li>
+              <li class="card"></li>
           </ul>
           <ul style="height: 20%">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li class="card"></li>
+            <li class="card"></li>
+            <li class="card"></li>
+            <li class="card"></li>
+            <li class="card"></li>
+            <li class="card"></li>
+            <li class="card"></li>
+            <li class="card"></li>
           </ul>
           <ul style="height: 20%">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li class="card"></li>
+            <li class="card"></li>
+            <li class="card"></li>
+            <li class="card"></li>
+            <li class="card"></li>
+            <li class="card"></li>
+            <li class="card"></li>
+            <li class="card"></li>
         </ul>
         </ul>
     </div>
@@ -92,31 +93,5 @@
     </div>
 
     <button class="btn dim" id="quitBtn" type="button">Quit</button>
-    
-    <script>
-        var popUp = document.getElementById('popUp');
-        var quitBtn = document.getElementById('quitBtn');
-        var noBtn = document.getElementById('noBtn');
-        var toDim = document.querySelectorAll(".dim");
-
-        console.log(toDim);
-
-        function activatePopUp(){
-          popUp.style.display='block';
-          for(e of toDim){
-            e.style.opacity=0.5;
-          }
-        }
-        quitBtn.addEventListener("click", activatePopUp);
-
-        function disactivatePopUp(){
-          popUp.style.display='none';
-          for(e of toDim){
-            e.style.opacity=1;
-          }
-        }
-        noBtn.addEventListener("click", disactivatePopUp);
-
-    </script>
 </body>
 </html>
