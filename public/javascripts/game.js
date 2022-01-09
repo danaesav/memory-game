@@ -75,34 +75,37 @@ for(let i=0; i<fronts.length; i++){
     fronts[i].addEventListener("click", function(){
         console.log("Something was clicked");
         if(pair.length<2){
-            fronts[i].classList.add("slide-up");
+            fronts[i].classList.add("open");
             pair.push(i);
         }
         if(pair.length == 2){
             if(images[pair[0]] == images[pair[1]]){
                 setTimeout(function(){
                     yourScore.textContent = "Your score: " + (((++score) / 20) * 100) + "%";
-                    fronts[pair[0]].className = "front slide-down";
-                    fronts[pair[1]].className = "front slide-down";
+                    
+                    
+                    fronts[pair[0]].className = "front open";
+                    fronts[pair[1]].className = "front open";
 
-                    fronts[pair[0]].childNodes[0].src = "images/flame_card_found.png";
                     fronts[pair[1]].childNodes[0].src = "images/flame_card_found.png";
+                    fronts[pair[0]].childNodes[0].src = "images/flame_card_found.png";
                     cards[pair[0]].className="card found";
                     cards[pair[1]].className="card found";
                     pair = [];
-                }, 2000);
-            }else{
+                }, 1000);
+            } else{
                 setTimeout(function(){
-                    fronts[pair[0]].className = "front slide-down";
-                    fronts[pair[1]].className = "front slide-down";
-                }, 2000);
+                    fronts[pair[0]].className = "front close";
+                    fronts[pair[1]].className = "front close";
+                }, 5000);
+
                 setTimeout(function(){
                     fronts[pair[0]].className="front";
                     fronts[pair[1]].className="front";
                     pair = [];
-                }, 2500);
+                }, 1000);
             }
         }
         
-    })
+    }, 3000)
 }
