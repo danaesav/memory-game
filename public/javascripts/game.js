@@ -101,7 +101,7 @@ function disactivateFinish(){
 //////////// Handling click on cards ////////////////
 let pair = []
 let id = []
-// var inputs = document.getElementsByClassName("card");
+let found = []
 for(let i=0; i<front.length; i++){
     front[i].addEventListener("click", function(){
         console.log("Something was clicked");
@@ -111,8 +111,10 @@ for(let i=0; i<front.length; i++){
             id.push(fronts[i].id);
         }
         if(pair.length == 2){
-            if(images[pair[0]] == images[pair[1]] && id[0] != id[1]){
+            if(images[pair[0]] == images[pair[1]] && id[0] != id[1] && !found.includes(id[0]) && !found.includes(id[1])){
                 setTimeout(function(){
+                    found.push(id[0]);
+                    found.push(id[1]);
                     let scoreDis = (((++score) / 20) * 100);
                     yourScore.textContent = "Your score: " + scoreDis + "%";
                     console.log("here");
@@ -124,26 +126,42 @@ for(let i=0; i<front.length; i++){
                     cards[pair[0]].className="card found";
                     cards[pair[1]].className="card found";
                     pair = [];
+                    id = [];
                     if(scoreDis==100) {   
                         finPopUpText.textContent = "You finished in "+ seconds + " seconds!";
                         activateFinish();
                         pause();
                     }
                 }, 1000);
-            } else {
+            } else if (!found.includes(id[0]) && !found.includes(id[1])) {
                 setTimeout(function(){
                     if(pair[0]!=null){
                         front[pair[0]].className = "front close";
-                    }
-                    if(pair[1]!=null){
-                        front[pair[1]].className = "front close";
-                    }
-                    if(pair[0]!=null){
                         front[pair[0]].className = "front";
                     }
                     if(pair[1]!=null){
+                        front[pair[1]].className = "front close";
                         front[pair[1]].className = "front";
                     }
+                    pair = [];
+                    id = [];
+                }, 1000);
+            } else if (!found.includes(id[0])) {
+                if(pair[0]!=null){
+                    front[pair[0]].className = "front close";
+                    front[pair[0]].className = "front";
+                }
+                pair = [];
+                id = [];
+            } else if (!found.includes(id[1])) {
+                if(pair[1]!=null){
+                    front[pair[1]].className = "front close";
+                    front[pair[1]].className = "front";
+                }
+                pair = [];
+                id = [];
+            }  else {
+                setTimeout(function(){
                     pair = [];
                     id = [];
                 }, 1000);
