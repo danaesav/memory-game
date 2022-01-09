@@ -4,7 +4,8 @@ var noBtn = document.getElementById('noBtn');
 var toDim = document.querySelectorAll(".dim");
 var yourScore = document.getElementById("yourScore");
 var timer = document.querySelector("header");
-var fronts = document.querySelectorAll(".front");
+var front = document.querySelectorAll(".front");
+var fronts = document.getElementsByClassName("card");
 var rears = document.querySelectorAll(".rear");
 var cards = document.querySelectorAll(".card");
 var images_names = ["3me.jpg", "aerospace.jpg", "architecture.jpg", "aula.jpg", "church.jpg", "EEMCS.jpg", "library.jpg", "castle.jpg", "station.jpg", "xtudelft.jpg", "andy.jpg", "nuna.jpg", "satellite.jpg", "ice.jpg", "vermeer.jpg", "pottery.jpg", "lake.jpg", "sunset.jpg", "christmas.jpg", "ww2.jpg"];
@@ -39,7 +40,7 @@ function shuffle(array){
 }
 
 //////////////// Set the initial images ///////////////////
-fronts.forEach(function(front){
+front.forEach(function(front){
     var icon = document.createElement("img");
     icon.src = "images/flame_card_not_found.png";
     front.appendChild(icon);
@@ -71,41 +72,51 @@ noBtn.addEventListener("click", disactivatePopUp);
 
 //////////// Handling click on cards ////////////////
 let pair = []
-for(let i=0; i<fronts.length; i++){
-    fronts[i].addEventListener("click", function(){
+let id = []
+// var inputs = document.getElementsByClassName("card");
+for(let i=0; i<front.length; i++){
+    front[i].addEventListener("click", function(){
         console.log("Something was clicked");
         if(pair.length<2){
-            fronts[i].classList.add("open");
+            front[i].classList.add("open");
             pair.push(i);
+            console.log("id", fronts[i].id);
+            console.log("images", i);
+            // console.log(document.getElementById(fronts[i].id).id);
+            id.push(fronts[i].id);
         }
         if(pair.length == 2){
-            if(images[pair[0]] == images[pair[1]]){
+            if(images[pair[0]] == images[pair[1]] && id[0] != id[1]){
                 setTimeout(function(){
                     yourScore.textContent = "Your score: " + (((++score) / 20) * 100) + "%";
-                    
-                    
-                    fronts[pair[0]].className = "front open";
-                    fronts[pair[1]].className = "front open";
+                    console.log("here");
+                    front[pair[0]].className = "front open";
+                    front[pair[1]].className = "front open";
 
-                    fronts[pair[1]].childNodes[0].src = "images/flame_card_found.png";
-                    fronts[pair[0]].childNodes[0].src = "images/flame_card_found.png";
+                    front[pair[1]].childNodes[0].src = "images/flame_card_found.png";
+                    front[pair[0]].childNodes[0].src = "images/flame_card_found.png";
                     cards[pair[0]].className="card found";
                     cards[pair[1]].className="card found";
                     pair = [];
                 }, 1000);
-            } else{
+            } else {
                 setTimeout(function(){
-                    fronts[pair[0]].className = "front close";
-                    fronts[pair[1]].className = "front close";
-                }, 5000);
-
-                setTimeout(function(){
-                    fronts[pair[0]].className="front";
-                    fronts[pair[1]].className="front";
+                    if(pair[0]!=null){
+                        front[pair[0]].className = "front close";
+                    }
+                    if(pair[1]!=null){
+                        front[pair[1]].className = "front close";
+                    }
+                    if(pair[0]!=null){
+                        front[pair[0]].className = "front";
+                    }
+                    if(pair[1]!=null){
+                        front[pair[1]].className = "front";
+                    }
                     pair = [];
+                    id = [];
                 }, 1000);
             }
         }
-        
     }, 3000)
 }
