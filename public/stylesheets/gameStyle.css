@@ -111,12 +111,12 @@ hr{
   border-radius: 25px;
 }
 
-#popUpText{
+#popUpText, #popUpText2{
     font-size: 4vh;
     font-size: 2.7vw;
 }
 
-#yesBtn{
+#yesBtn, #againBtn{
   position: absolute;
   left: 7.44%;
   right: auto;
@@ -143,7 +143,7 @@ hr{
   border-radius: 25px;
 }
 
-#noBtn{
+#noBtn, #okBtn{
   position: absolute;
   left: auto;
   right: 7.44%;
@@ -174,7 +174,7 @@ hr{
   text-transform: uppercase;
 }
 
-#popUp {
+#popUp, #finPopUp {
   display: none; 
   background: #66B9A3;
   

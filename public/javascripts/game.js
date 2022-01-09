@@ -1,6 +1,7 @@
 var popUp = document.getElementById('popUp');
 var quitBtn = document.getElementById('quitBtn');
 var noBtn = document.getElementById('noBtn');
+var okBtn = document.getElementById('okBtn');
 var toDim = document.querySelectorAll(".dim");
 var yourScore = document.getElementById("yourScore");
 var timer = document.querySelector("header");
@@ -8,17 +9,26 @@ var front = document.querySelectorAll(".front");
 var fronts = document.getElementsByClassName("card");
 var rears = document.querySelectorAll(".rear");
 var cards = document.querySelectorAll(".card");
+var finPopUpText = document.getElementById("popUpText2");
+var finPopUp = document.getElementById("finPopUp");
 var images_names = ["3me.jpg", "aerospace.jpg", "architecture.jpg", "aula.jpg", "church.jpg", "EEMCS.jpg", "library.jpg", "castle.jpg", "station.jpg", "xtudelft.jpg", "andy.jpg", "nuna.jpg", "satellite.jpg", "ice.jpg", "vermeer.jpg", "pottery.jpg", "lake.jpg", "sunset.jpg", "christmas.jpg", "ww2.jpg"];
 
 let score = 0;
 let seconds = 0;
+let done = false;
 
 /////////// Update timer every second ////////////////
 for(let i=0; i<=500; i++){
     setTimeout(function(){
-        timer.textContent = "Timer: " + i + "s";
-        seconds = i;
+        if(done==false){
+            timer.textContent = "Timer: " + i + "s";
+            seconds = i;
+        }
     }, 1000*i);
+}
+
+function pause(){
+    done = true;
 }
 
 /////////// Make and shuffle array of 40 images ////////////////////
@@ -71,6 +81,22 @@ function disactivatePopUp(){
 }
 noBtn.addEventListener("click", disactivatePopUp);
 
+function activateFinish(){
+    finPopUp.style.display='block';
+    for(e of toDim){
+        e.style.opacity=0.5;
+    }
+}
+
+okBtn.addEventListener("click", disactivateFinish);
+
+function disactivateFinish(){
+    finPopUp.style.display='none';
+    for(e of toDim){
+        e.style.opacity=1;
+    }
+}
+
 
 //////////// Handling click on cards ////////////////
 let pair = []
@@ -98,8 +124,10 @@ for(let i=0; i<front.length; i++){
                     cards[pair[0]].className="card found";
                     cards[pair[1]].className="card found";
                     pair = [];
-                    if(scoreDis==100) {
-                        alert("You finished! With a total time of "+ seconds + " seconds");
+                    if(scoreDis==5) {   
+                        finPopUpText.textContent = "You finished in "+ seconds + " seconds!";
+                        activateFinish();
+                        pause();
                     }
                 }, 1000);
             } else {
