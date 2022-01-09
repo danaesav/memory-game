@@ -124,7 +124,7 @@ for(let i=0; i<front.length; i++){
                     cards[pair[0]].className="card found";
                     cards[pair[1]].className="card found";
                     pair = [];
-                    if(scoreDis==5) {   
+                    if(scoreDis==100) {   
                         finPopUpText.textContent = "You finished in "+ seconds + " seconds!";
                         activateFinish();
                         pause();
