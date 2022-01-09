@@ -11,11 +11,13 @@ var cards = document.querySelectorAll(".card");
 var images_names = ["3me.jpg", "aerospace.jpg", "architecture.jpg", "aula.jpg", "church.jpg", "EEMCS.jpg", "library.jpg", "castle.jpg", "station.jpg", "xtudelft.jpg", "andy.jpg", "nuna.jpg", "satellite.jpg", "ice.jpg", "vermeer.jpg", "pottery.jpg", "lake.jpg", "sunset.jpg", "christmas.jpg", "ww2.jpg"];
 
 let score = 0;
+let seconds = 0;
 
 /////////// Update timer every second ////////////////
 for(let i=0; i<=500; i++){
     setTimeout(function(){
         timer.textContent = "Timer: " + i + "s";
+        seconds = i;
     }, 1000*i);
 }
 
@@ -80,15 +82,13 @@ for(let i=0; i<front.length; i++){
         if(pair.length<2){
             front[i].classList.add("open");
             pair.push(i);
-            console.log("id", fronts[i].id);
-            console.log("images", i);
-            // console.log(document.getElementById(fronts[i].id).id);
             id.push(fronts[i].id);
         }
         if(pair.length == 2){
             if(images[pair[0]] == images[pair[1]] && id[0] != id[1]){
                 setTimeout(function(){
-                    yourScore.textContent = "Your score: " + (((++score) / 20) * 100) + "%";
+                    let scoreDis = (((++score) / 20) * 100);
+                    yourScore.textContent = "Your score: " + scoreDis + "%";
                     console.log("here");
                     front[pair[0]].className = "front open";
                     front[pair[1]].className = "front open";
@@ -98,6 +98,9 @@ for(let i=0; i<front.length; i++){
                     cards[pair[0]].className="card found";
                     cards[pair[1]].className="card found";
                     pair = [];
+                    if(scoreDis==100) {
+                        alert("You finished! With a total time of "+ seconds + " seconds");
+                    }
                 }, 1000);
             } else {
                 setTimeout(function(){
