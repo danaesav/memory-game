@@ -17,6 +17,13 @@ let score = 0;
 let seconds = 0;
 let done = false;
 
+///////// Web socket /////////////////
+const socket = new WebSocket("ws://localhost:3000");
+
+socket.onopen = function () {
+    socket.send("Hello from the client!");
+};
+
 /////////// Update timer every second ////////////////
 for(let i=0; i<=500; i++){
     setTimeout(function(){
