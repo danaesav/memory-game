@@ -18,24 +18,24 @@
     
     <div class="row dim">
         <div class="column">
-            <h2 class="numbers" id="numberCompletedGames">30</h2>
+            <h2 class="numbers" id="numberCompletedGames">0</h2>
             <p class="labels" id="labelCompletedgames">Completed Games</p>
         </div>
 
         <div class="column">
-            <h2 class="numbers" id="numberPlayersOnline">50</h2>
+            <h2 class="numbers" id="numberPlayersOnline">0</h2>
             <p class="labels" id="labelPlayersOnline">Players Online</p>
         </div>
 
         <div class="column">
-            <h2 class="numbers" id="numberOngoingGames">25</h2>
+            <h2 class="numbers" id="numberOngoingGames">0</h2>
             <p class="labels" id="labelOngoingGames">Ongoing games</p>
         </div>
     </div>
 
     <div class="dim">
         <form id="playForm" method="get" action="/play">
-            <button class="btn" id="playButton" onclick="play()" type="button">Play</button>
+            <button class="btn" id="playButton" type="button" onclick="submit()">Play</button>
         </form>    
         <button class="btnLow btn" id="leaderboardButton" type="button">Leaderboard</button>
         <button class="btnLow btn" id="rulesButton" type="button">How to play</button>
