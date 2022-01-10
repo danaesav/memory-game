@@ -11,7 +11,7 @@ var rears = document.querySelectorAll(".rear");
 var cards = document.querySelectorAll(".card");
 var finPopUpText = document.getElementById("popUpText2");
 var finPopUp = document.getElementById("finPopUp");
-var images_names = ["3me.jpg", "aerospace.jpg", "architecture.jpg", "aula.jpg", "church.jpg", "EEMCS.jpg", "library.jpg", "castle.jpg", "station.jpg", "xtudelft.jpg", "andy.jpg", "nuna.jpg", "satellite.jpg", "ice.jpg", "vermeer.jpg", "pottery.jpg", "lake.jpg", "sunset.jpg", "christmas.jpg", "ww2.jpg"];
+var images_names = ["architecture.jpg", "aula.jpg", "church.jpg", "EEMCS.jpg", "library.jpg", "castle.jpg", "station.jpg", "vermeer.jpg", "pottery.jpg", "sunset.jpg"];
 
 let score = 0;
 let seconds = 0;
@@ -31,7 +31,7 @@ function pause(){
     done = true;
 }
 
-/////////// Make and shuffle array of 40 images ////////////////////
+/////////// Make and shuffle array of 20 images ////////////////////
 var images = []
 for(let i=0; i<2; i++){
     for(let j=0; j<images_names.length; j++){
@@ -115,7 +115,7 @@ for(let i=0; i<front.length; i++){
                 setTimeout(function(){
                     found.push(id[0]);
                     found.push(id[1]);
-                    let scoreDis = (((++score) / 20) * 100);
+                    let scoreDis = (((++score) / 10) * 100);
                     yourScore.textContent = "Your score: " + scoreDis + "%";
                     console.log("here");
                     front[pair[0]].className = "front open";

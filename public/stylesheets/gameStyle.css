@@ -75,13 +75,12 @@ hr{
 
 #canvas{
   position: absolute;
-  left: 9.39%;
-  right: 9.46%;
-  top: 14.66%;
-  bottom: 12.53%;
-
+  left: 20.5%;
+  right: 20.5%;
+  top: 15%;
+  bottom: 13%;
   background: rgba(110, 198, 194, 0.65);
-  border-radius: 70px;
+  border-radius: 60px;
 }
 
 #quitBtn{
@@ -203,8 +202,8 @@ hr{
   border-radius: 15px;
   padding: .5em;
   display: block;
-  width: 98.5%;
-  height: 76%;
+  min-width: 98%;
+  min-height: 100%;
   bottom: 50%;
   font-size: 2vh;
 }
@@ -215,8 +214,8 @@ hr{
   border-radius: 15px;
   margin-left: 5px;
   margin-right: 5px;
-  height: 86%;
-  width: 10%;
+  max-height: 90%;
+  max-width: 17%;
   padding: .5em;
   cursor: pointer;
   transition: transform 1s;
@@ -276,5 +275,4 @@ ul {
   100% {
       opacity: 0;
   }
-  
 }
