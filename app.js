@@ -25,11 +25,11 @@ wss.on("connection", function (ws) {
 
     ws.on("message", function incoming(message) {
         console.log("[LOG] " + message);
-        websockets.add(ws);
         console.log(websockets);
 
         if(message == "OPEN"){
             statistics.playersOnline++;
+            websockets.add(ws);
             console.log("Players online are: " + statistics.playersOnline);
             websockets.forEach(function(websocket){
                 websocket.send("PLAYERS_ONLINE " + statistics.playersOnline);
