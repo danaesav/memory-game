@@ -43,13 +43,15 @@ againBtn.onclick = function() {
 
 
 /////////// Update timer every second ////////////////
-for(let i=0; i<=500; i++){
-    setTimeout(function(){
-        if(done==false){
-            timer.textContent = "Timer: " + i + "s";
-            seconds = i;
-        }
-    }, 1000*i);
+function startTimer(){
+    for(let i=0; i<=500; i++){
+        setTimeout(function(){
+            if(done==false){
+                timer.textContent = "Timer: " + i + "s";
+                seconds = i;
+            }
+        }, 1000*i);
+    }
 }
 
 function pause(){
@@ -193,4 +195,28 @@ for(let i=0; i<front.length; i++){
             }
         }
     }, 3000)
+}
+
+var x = true;
+var toDim = document.querySelectorAll(".dim");
+
+function findMatch() {
+    document.getElementById('popUpWait').style.display='block';
+    for(e of toDim){
+        e.style.opacity=0.5;
+        document.getElementById('popUpWait').style.opacity=1;
+    }
+    setTimeout(function(){
+        if(x){document.getElementById("playForm").submit()}
+        x = true;
+    }, 1500);
+}
+
+function cancel() {
+    x = false;
+    for(e of toDim){
+        e.style.opacity=1;
+    }
+    document.getElementById('popUpWait').style.display='none';
+    document.getElementById("cancelForm").submit();
 }

@@ -19,101 +19,101 @@
       } */
     </style>
   </head>
-<body style="background-color: #66B9A3;">
+<body onload="findMatch()" style="background-color: #66B9A3;">
 
-    <header class="dim">Timer: 0<hr></header>
-    <div class="dim" id="canvas">
+    <header class="dim dim">Timer: 0<hr></header>
+    <div class="dim dim" id="canvas">
         <!--table-->
         <ul id="outer">
 
           <ul style="height: 20%">
-            <li id="0" class="card not_found">
-              <div class="rear"></div>
-              <div class="front"></div>
+            <li id="0" class="dim card not_found">
+              <div class="dim rear"></div>
+              <div class="dim front"></div>
             </li>
-            <li id="1" class="card not_found">
-              <div class="rear"></div>
-              <div class="front"></div>
+            <li id="1" class="dim card not_found">
+              <div class="dim rear"></div>
+              <div class="dim front"></div>
             </li>
-            <li id="2" class="card not_found">
-              <div class="rear"></div>
-              <div class="front"></div>
+            <li id="2" class="dim card not_found">
+              <div class="dim rear"></div>
+              <div class="dim front"></div>
             </li>
-            <li id="3" class="card not_found">
-              <div class="rear"></div>
-              <div class="front"></div>
+            <li id="3" class="dim card not_found">
+              <div class="dim rear"></div>
+              <div class="dim front"></div>
             </li>
-            <li id="4" class="card not_found">
-              <div class="rear"></div>
-              <div class="front"></div>
-            </li>
-          </ul>
-
-          <ul style="height: 20%">
-            <li id="5" class="card not_found">
-              <div class="rear"></div>
-              <div class="front"></div>
-            </li>
-            <li id="6" class="card not_found">
-              <div class="rear"></div>
-              <div class="front"></div>
-            </li>
-            <li id="7" class="card not_found">
-              <div class="rear"></div>
-              <div class="front"></div>
-            </li>
-            <li id="8" class="card">
-              <div class="rear"></div>
-              <div class="front"></div>
-            </li>
-            <li id="9" class="card not_found">
-              <div class="rear"></div>
-              <div class="front"></div>
+            <li id="4" class="dim card not_found">
+              <div class="dim rear"></div>
+              <div class="dim front"></div>
             </li>
           </ul>
 
           <ul style="height: 20%">
-            <li id="10" class="card not_found">
-              <div class="rear"></div>
-              <div class="front"></div>
+            <li id="5" class="dim card not_found">
+              <div class="dim rear"></div>
+              <div class="dim front"></div>
             </li>
-            <li id="11" class="card not_found">
-              <div class="rear"></div>
-              <div class="front"></div></li>
-            <li id="12" class="card not_found">
-              <div class="rear"></div>
-              <div class="front"></div>
+            <li id="6" class="dim card not_found">
+              <div class="dim rear"></div>
+              <div class="dim front"></div>
             </li>
-            <li id="13" class="card not_found">
-              <div class="rear"></div>
-              <div class="front"></div>
+            <li id="7" class="dim card not_found">
+              <div class="dim rear"></div>
+              <div class="dim front"></div>
             </li>
-            <li id="14" class="card not_found">
-              <div class="rear"></div>
-              <div class="front"></div>
+            <li id="8" class="dim card">
+              <div class="dim rear"></div>
+              <div class="dim front"></div>
+            </li>
+            <li id="9" class="dim card not_found">
+              <div class="dim rear"></div>
+              <div class="dim front"></div>
             </li>
           </ul>
 
           <ul style="height: 20%">
-            <li id="15" class="card not_found">
-              <div class="rear"></div>
-              <div class="front"></div>
+            <li id="10" class="dim card not_found">
+              <div class="dim rear"></div>
+              <div class="dim front"></div>
             </li>
-            <li id="16" class="card not_found">
-              <div class="rear"></div>
-              <div class="front"></div>
+            <li id="11" class="dim card not_found">
+              <div class="dim rear"></div>
+              <div class="dim front"></div></li>
+            <li id="12" class="dim card not_found">
+              <div class="dim rear"></div>
+              <div class="dim front"></div>
             </li>
-            <li id="17" class="card not_found">
-              <div class="rear"></div>
-              <div class="front"></div>
+            <li id="13" class="dim card not_found">
+              <div class="dim rear"></div>
+              <div class="dim front"></div>
             </li>
-            <li id="18" class="card not_found">
-              <div class="rear"></div>
-              <div class="front"></div>
+            <li id="14" class="dim card not_found">
+              <div class="dim rear"></div>
+              <div class="dim front"></div>
             </li>
-            <li id="19" class="card not_found">
-              <div class="rear"></div>
-              <div class="front"></div>
+          </ul>
+
+          <ul style="height: 20%">
+            <li id="15" class="dim card not_found">
+              <div class="dim rear"></div>
+              <div class="dim front"></div>
+            </li>
+            <li id="16" class="dim card not_found">
+              <div class="dim rear"></div>
+              <div class="dim front"></div>
+            </li>
+            <li id="17" class="dim card not_found">
+              <div class="dim rear"></div>
+              <div class="dim front"></div>
+            </li>
+            <li id="18" class="dim card not_found">
+              <div class="dim rear"></div>
+              <div class="dim front"></div>
+            </li>
+            <li id="19" class="dim card not_found">
+              <div class="dim rear"></div>
+              <div class="dim front"></div>
             </li>
           </ul>
 
@@ -121,27 +121,35 @@
     </div>
 
     <div>
-      <p class="text dim score" id="yourScore">Your score: 0%</p>
-      <p class="text dim score" id="opponentScore">Opponent Score: 0%</p>
+      <p class="dim text dim score" id="yourScore">Your score: 0%</p>
+      <p class="dim text dim score" id="opponentScore">Opponent Score: 0%</p>
     </div>
 
     <div id="popUp">
-      <p class="text" id="popUpText"><em>Do you really want to quit?</em></p>
+      <p class="dim text" id="popUpText"><em>Do you really want to quit?</em></p>
       <form method="get" action="/">
-        <button class="btn" id="yesBtn" type="submit">Yes</button>
+        <button class="dim btn" id="yesBtn" type="submit">Yes</button>
       </form>
-      <button class="btn" id="noBtn" type="button">No</button>
+      <button class="dim btn" id="noBtn" type="button">No</button>
     </div>
 
     <div id="finPopUp">
-      <p class="text" id="popUpText2"></p>
+      <p class="dim text" id="popUpText2"></p>
       <form method="get" action="/">
-        <button class="btn" id="againBtn" type="submit">Again</button>
+        <button class="dim btn" id="againBtn" type="submit">Again</button>
       </form>
-      <button class="btn" id="okBtn" type="button">Okay</button>
+      <button class="dim btn" id="okBtn" type="button">Okay</button>
     </div>
 
-    <button class="btn dim" id="quitBtn" type="button">Quit</button>
+    <div class="pop" id="popUpWait">
+      <h1>Please Wait</h1>
+      <h2>Finding a match...</h2>
+      <form id="cancelForm" method="get" action="/">
+          <button class="btn" onclick="cancel()" type="submit" id="cancelbtn">Cancel</button>
+      </form>    
+    </div>
+
+    <button class="dim btn dim" id="quitBtn" type="button">Quit</button>
     <script src="javascripts/game.js"></script>
 </body>
 </html>

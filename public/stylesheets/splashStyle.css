@@ -147,18 +147,6 @@ body {
 .btn:hover {
     text-transform: uppercase;
 }
-  
-/* Add a color to the cancel button */
-#cancelbtn {
-  border-radius: 40px;
-  height: 25%;
-  width: 25%;
-  font-size: 160%;
-  top: 66%;
-  left: 39%;
-  font-size: 3vw;
-  font-size: 5vh;
-}
 
 .pop {
   display: none; 
@@ -171,18 +159,7 @@ body {
 }
 
 /* The Modal (background) */
-#popUp {
-  font-size: 150%;
-  line-height: 85%;
-  -webkit-text-stroke: 2px black;
-  height: 25%;
-  width: 60%;
-  bottom: 40%;
-  left: 22%;
-  right: 22%;
-  font-size: 3vw;
-  font-size: 3vh;
-}
+
 
 #popUpInfo {
   color: white;
