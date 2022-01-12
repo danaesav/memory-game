@@ -12,10 +12,34 @@ var cards = document.querySelectorAll(".card");
 var finPopUpText = document.getElementById("popUpText2");
 var finPopUp = document.getElementById("finPopUp");
 var images_names = ["architecture.jpg", "aula.jpg", "church.jpg", "EEMCS.jpg", "library.jpg", "castle.jpg", "station.jpg", "vermeer.jpg", "pottery.jpg", "sunset.jpg"];
+var yesBtn = document.getElementById('yesBtn');
+var againBtn = document.getElementById('againBtn');
 
 let score = 0;
 let seconds = 0;
 let done = false;
+
+const socket = new WebSocket("ws://localhost:3000/play");
+
+socket.onopen = function () {
+    socket.send("gameStarted");
+    console.log("Socket opened for game");
+};
+
+window.onbeforeunload = function(){
+    socket.send("leaving!");
+}
+
+yesBtn.onclick = function() {
+    socket.send("goingBack");
+    console.log("Going back");
+}
+
+againBtn.onclick = function() {
+    socket.send("goingBack");
+    console.log("Going back");
+}
+
 
 
 /////////// Update timer every second ////////////////
@@ -128,7 +152,7 @@ for(let i=0; i<front.length; i++){
                     cards[pair[1]].className="card found";
                     pair = [];
                     id = [];
-                    if(scoreDis==10) {   
+                    if(scoreDis==100) {   
                         finPopUpText.textContent = seconds + " seconds!";
                         activateFinish();
                         pause();

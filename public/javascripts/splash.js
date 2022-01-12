@@ -3,7 +3,7 @@ const socket = new WebSocket("ws://localhost:3000");
 
 socket.onopen = function () {
     socket.send("OPEN");
-    console.log("Socket oipened");
+    console.log("Socket opened");
 };
 
 socket.onmessage = function(event){
@@ -11,6 +11,9 @@ socket.onmessage = function(event){
     console.log(message);
     if(message[0] == "PLAYERS_ONLINE"){
         document.getElementById("numberPlayersOnline").textContent = message[1];
+    }
+    if(message[0] == "GAMES_STARTED"){
+        document.getElementById("numberOngoingGames").textContent = message[1];
     }
 }
 //////////// Basic page functionality //////////////////

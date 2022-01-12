@@ -34,6 +34,38 @@ wss.on("connection", function (ws) {
             websockets.forEach(function(websocket){
                 websocket.send("PLAYERS_ONLINE " + statistics.playersOnline);
             })
+            console.log("Games Started are: " + statistics.ongoingGames);
+            websockets.forEach(function(websocket){
+                websocket.send("GAMES_STARTED " + statistics.ongoingGames);
+            })
+        }
+
+        if(message == "gameStarted"){
+            statistics.ongoingGames++;
+            statistics.playersOnline++;
+            websockets.add(ws);
+            websockets.add(ws);
+            console.log("Players online are: " + statistics.playersOnline);
+            websockets.forEach(function(websocket){
+                websocket.send("PLAYERS_ONLINE " + statistics.playersOnline);
+            })
+            console.log("Games Started are: " + statistics.ongoingGames);
+            websockets.forEach(function(websocket){
+                websocket.send("GAMES_STARTED " + statistics.ongoingGames);
+            })
+        }
+
+        if(message == "leaving!"){
+            statistics.ongoingGames--;
+            websockets.delete(ws);
+            console.log("Players online are: " + statistics.playersOnline);
+            websockets.forEach(function(websocket){
+                websocket.send("PLAYERS_ONLINE " + statistics.playersOnline);
+            })
+            console.log("Games Started are: " + statistics.ongoingGames);
+            websockets.forEach(function(websocket){
+                websocket.send("GAMES_STARTED " + statistics.ongoingGames);
+            })
         }
 
     });
@@ -44,6 +76,10 @@ wss.on("connection", function (ws) {
         websockets.delete(ws);
         websockets.forEach(function(websocket){
             websocket.send("PLAYERS_ONLINE " + statistics.playersOnline);
+        })
+        console.log("Games Started are: " + statistics.ongoingGames);
+        websockets.forEach(function(websocket){
+            websocket.send("GAMES_STARTED " + statistics.ongoingGames);
         })
     });
 
