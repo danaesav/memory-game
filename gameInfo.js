@@ -1,8 +1,8 @@
-const gameInfo = {
-    completedGames : 0,
-    playersOnline : 0,
-    ongoingGames : 0,
-    leaderBoard : {}
+const game = function(gameId){
+    this.playerA = null;
+    this.playerB = null;
+    this.id = gameId;
+    this.gameState = null;
 }
 
-module.exports = gameInfo;
+module.exports = game;

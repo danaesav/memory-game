@@ -14,6 +14,7 @@ var finPopUp = document.getElementById("finPopUp");
 var images_names = ["architecture.jpg", "aula.jpg", "church.jpg", "EEMCS.jpg", "library.jpg", "castle.jpg", "station.jpg", "vermeer.jpg", "pottery.jpg", "sunset.jpg"];
 var yesBtn = document.getElementById('yesBtn');
 var againBtn = document.getElementById('againBtn');
+var displayOpponentScore = document.getElementById("opponentScore");
 
 let score = 0;
 let seconds = 0;
@@ -22,15 +23,38 @@ let done = false;
 const socket = new WebSocket("ws://localhost:3000/play");
 
 socket.onopen = function () {
-    socket.send("gameStarted");
-    console.log("Socket opened for game");
+    socket.send(JSON.stringify({
+        from: "gameScreen",
+        status: "joined"
+    }));
 };
 
 window.onbeforeunload = function(){
-    socket.send("leaving!");
+    socket.send(JSON.stringify({
+        from: "gameScreen",
+        status: "left"
+    }));
+};
+
+socket.onmessage = function(event){
+    message = event.data;
+    message = JSON.parse(message);
+    if(message.purpose == "queued"){
+        console.log("Waiting for players...");
+        openWaitingPopUp();
+    }else if(message.purpose == "start"){
+        console.log("You may start");
+        closeWaitingPopUp();
+    }else if(message.purpose == "updateScores"){
+        console.log("Score must be updated :(");
+        displayOpponentScore.textContent = "Opponent score: " + message.opScore * 10+ "%";
+    }else if(message.purpose == "victory"){
+        console.log("You won!");
+    }
+    
 }
 
-yesBtn.onclick = function() {
+/*yesBtn.onclick = function() {
     socket.send("goingBack");
     console.log("Going back");
 }
@@ -38,7 +62,7 @@ yesBtn.onclick = function() {
 againBtn.onclick = function() {
     socket.send("goingBack");
     console.log("Going back");
-}
+}*/
 
 
 
@@ -125,7 +149,7 @@ function disactivateFinish(){
 }
 
 
-//////////// Handling click on cards ////////////////
+//////////// Handling click on cards and send updates to server ////////////////
 let pair = []
 let id = []
 let found = []
@@ -143,6 +167,13 @@ for(let i=0; i<front.length; i++){
                     found.push(id[0]);
                     found.push(id[1]);
                     let scoreDis = (((++score) / 10) * 100);
+
+                    socket.send(JSON.stringify({
+                        from : "gameScreen",
+                        status: "playing",
+                        newScore: score 
+                    }))
+
                     yourScore.textContent = "Your score: " + scoreDis + "%";
                     console.log("here");
                     front[pair[0]].className = "front open";
@@ -197,26 +228,21 @@ for(let i=0; i<front.length; i++){
     }, 3000)
 }
 
-var x = true;
+//////////// Waiting screen //////////////
 var toDim = document.querySelectorAll(".dim");
 
-function findMatch() {
+function openWaitingPopUp() {
     document.getElementById('popUpWait').style.display='block';
     for(e of toDim){
         e.style.opacity=0.5;
         document.getElementById('popUpWait').style.opacity=1;
     }
-    setTimeout(function(){
-        if(x){document.getElementById("playForm").submit()}
-        x = true;
-    }, 1500);
 }
 
-function cancel() {
-    x = false;
+function closeWaitingPopUp() {
+    document.getElementById('popUpWait').style.display='none';
     for(e of toDim){
         e.style.opacity=1;
+        document.getElementById('popUpWait').style.opacity=1;
     }
-    document.getElementById('popUpWait').style.display='none';
-    document.getElementById("cancelForm").submit();
 }

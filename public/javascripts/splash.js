@@ -1,20 +1,35 @@
+//////// HTML elements ///////////
+const displayCompletedGames = document.getElementById("numberCompletedGames");
+const displayPlayersOnline = document.getElementById("numberPlayersOnline");
+const displayOngoingGames = document.getElementById("numberOngoingGames");
+
 ///////// Web socket /////////////////
 const socket = new WebSocket("ws://localhost:3000");
 
 socket.onopen = function () {
-    socket.send("OPEN");
-    console.log("Socket opened");
+    socket.send(JSON.stringify({
+        from: "splashScreen",
+        status: "joined"
+    }));
+    
+};
+
+window.onbeforeunload = function(){
+    socket.send(JSON.stringify({
+        from: "splashScreen",
+        status: "left"
+    }));
 };
 
 socket.onmessage = function(event){
-    message = event.data.split(" ");
-    console.log(message);
-    if(message[0] == "PLAYERS_ONLINE"){
-        document.getElementById("numberPlayersOnline").textContent = message[1];
+    message = event.data;
+    message = JSON.parse(message);
+    if(message.purpose == "updateStats"){
+        displayCompletedGames.textContent = message.completedGames;
+        displayPlayersOnline.textContent = message.playersOnline;
+        displayOngoingGames.textContent = message.ongoingGames;
     }
-    if(message[0] == "GAMES_STARTED"){
-        document.getElementById("numberOngoingGames").textContent = message[1];
-    }
+    
 }
 //////////// Basic page functionality //////////////////
 var x = true;
