@@ -71,6 +71,9 @@ function activatePopUp(){
     for(e of toDim){
     e.style.opacity=0.5;
     }
+    for(e of rear){
+        e.hidden=true;
+    }
 }
 quitBtn.addEventListener("click", activatePopUp);
 
@@ -78,6 +81,9 @@ function disactivatePopUp(){
     popUp.style.display='none';
     for(e of toDim){
     e.style.opacity=1;
+    }
+    for(e of rear){
+        e.hidden=false;
     }
 }
 noBtn.addEventListener("click", disactivatePopUp);
@@ -88,16 +94,6 @@ function activateFinish(){
         e.style.opacity=0.5;
     }
 }
-
-// okBtn.addEventListener("click", disactivateFinish);
-
-function disactivateFinish(){
-    finPopUp.style.display='none';
-    for(e of toDim){
-        e.style.opacity=1;
-    }
-}
-
 
 //////////// Handling click on cards and send updates to server ////////////////
 let pair = []
@@ -184,12 +180,16 @@ for(let i=0; i<front.length; i++){
 
 //////////// Waiting screen //////////////
 var toDim = document.querySelectorAll(".dim");
+var rear = document.querySelectorAll(".rear");
 
 function openWaitingPopUp() {
     document.getElementById('popUpWait').style.display='block';
     for(e of toDim){
         e.style.opacity=0.5;
         document.getElementById('popUpWait').style.opacity=1;
+    }
+    for(e of rear){
+        e.hidden=true;
     }
 }
 
@@ -198,5 +198,8 @@ function closeWaitingPopUp() {
     for(e of toDim){
         e.style.opacity=1;
         document.getElementById('popUpWait').style.opacity=1;
+    }
+    for(e of rear){
+        e.hidden=false;
     }
 }

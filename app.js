@@ -79,6 +79,10 @@ wss.on("connection", function (ws) {
         // Find where the ws is in the pairs list and send his opponent the updated score, if new score is 10 someone won
         else if(message.status == "playing"){
             const newScore = message.newScore;
+            getOpponent(ws).send(JSON.stringify({
+                purpose: "updateScores",
+                opScore: message.newScore
+            }))
             if(newScore == 10){
                 getOpponent(ws).send(JSON.stringify({
                     purpose: "loss",
@@ -87,11 +91,6 @@ wss.on("connection", function (ws) {
                 statistics.ongoingGames--;
                 statistics.completedGames++;
                 sendUpdatedStats();
-            } else{
-                getOpponent(ws).send(JSON.stringify({
-                    purpose: "updateScores",
-                    opScore: message.newScore
-                }))
             }
         }
         // User wants to play again, is redirected to splash screen
