@@ -69,6 +69,7 @@ wss.on("connection", function (ws) {
                     sendUpdatedStats();
                 }
                 websockets.delete(ws);
+                console.log("SOme person won");
             }
             statistics.playersOnline--;
             websockets.delete(ws);
@@ -96,7 +97,8 @@ wss.on("connection", function (ws) {
             statistics.ongoingGames++;
             statistics.completedGames--;
             websockets.delete(ws);
-        } else if(message.status == "quit"){
+        } 
+        else if(message.status == "quit"){
             getOpponent(ws).send(JSON.stringify({
                 purpose: "victory",
                 reason: "Opponent left!"
@@ -107,6 +109,7 @@ wss.on("connection", function (ws) {
             websockets.delete(ws);
             sendUpdatedStats();
         }
+        console.log("[PAIRS] " + pairs.length + ", [QUEUE] " + queue.length);
     });
 });
 
@@ -124,7 +127,7 @@ let sendUpdatedStats = function(){
 
 // Returns the opponent a specific websocket is matched up with or null websocket's not found
 const getOpponent = function(ws){
-    for(let i=0; i<pairs.length; i++){
+    for(let i=pairs.length-1; i>=0; i--){
         if(pairs[i][0] == ws){
             return pairs[i][1];
         }else if(pairs[i][1]){
@@ -134,6 +137,14 @@ const getOpponent = function(ws){
     return null;
 }
 
+// Returns pair in which th websocket is found
+const getPair = function(ws){
+    pairs.forEach(function(pair){
+        if(pair[0] == ws || pair[1] == ws){
+            return pair;
+        }
+    })
+}
 
 app.use(express.static(__dirname + "/public"));
 server.listen(port);
