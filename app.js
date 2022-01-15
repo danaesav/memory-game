@@ -6,15 +6,15 @@ const websocket = require("ws");
 const port = process.argv[2];
 const app = express();
 const statistics = require("./statistics.js");
-const game = require("./gameInfo.js");
-const { playersOnline, leaderBoard } = require("./statistics.js");
-const { stat } = require("fs");
+const game = require("./game.js");
+
 
 const server = http.createServer(app);
 const wss = new websocket.Server({ server });
-const websockets = new Set();
-let pairs = []
+const websockets = new Set();       
+let games = []
 let queue = []
+let gameID = 0;
 
 ////////// Routes //////////////////
 app.get('/', function (req, res) {
@@ -42,7 +42,10 @@ wss.on("connection", function (ws) {
                     }))
                 }else if(queue.length == 1){
                     queue.push(ws);
-                    pairs.push(queue);
+                    newGame = new game.Game(gameID++);
+                    newGame.playerA = queue[0];
+                    newGame.playerB = queue[1];
+                    games.push(newGame);
                     statistics.ongoingGames++;
                     sendUpdatedStats();
                     queue.forEach(function(queuedClient){
@@ -70,13 +73,13 @@ wss.on("connection", function (ws) {
                     sendUpdatedStats();
                 }
                 websockets.delete(ws);
-                console.log("SOme person won");
+                getGame(ws).setWinner(getOpponent(ws));
             }
             statistics.playersOnline--;
             websockets.delete(ws);
             sendUpdatedStats();
         }
-        // Find where the ws is in the pairs list and send his opponent the updated score, if new score is 10 someone won
+        // Find where the ws is in the games list and send his opponent the updated score, if new score is 10 someone won
         else if(message.status == "playing"){
             const newScore = message.newScore;
             getOpponent(ws).send(JSON.stringify({
@@ -90,6 +93,7 @@ wss.on("connection", function (ws) {
                 }))
                 statistics.ongoingGames--;
                 statistics.completedGames++;
+                getGame(ws).setWinner(ws);
                 sendUpdatedStats();
             }
         }
@@ -107,11 +111,11 @@ wss.on("connection", function (ws) {
             statistics.ongoingGames--;
             statistics.completedGames++;
             statistics.playersOnline--;
-            sendUpdatedStats();
             websockets.delete(ws);
+            getGame(ws).setWinner(getOpponent(ws));
             sendUpdatedStats();
         }
-        // Game is finished, update leaderboard if needed
+        // game is finished, update leaderboard if needed
         else if(message.status == "gameFinished"){
             const newTime = message.time;
             if(statistics.leaderBoard.first>newTime){
@@ -132,9 +136,11 @@ wss.on("connection", function (ws) {
             statistics.playersOnline--;
             websockets.delete(ws);
         }
-        console.log("[PAIRS] " + pairs.length + ", [QUEUE] " + queue.length);
+        console.log("[games] " + games.length + ", [QUEUE] " + queue.length);
     });
 });
+
+//////////// Helper functions //////////////////////////
 
 // Sends updated statistics to all clients
 let sendUpdatedStats = function(){
@@ -153,15 +159,37 @@ let sendUpdatedStats = function(){
 
 // Returns the opponent a specific websocket is matched up with or null websocket's not found
 const getOpponent = function(ws){
-    for(let i=pairs.length-1; i>=0; i--){
-        if(pairs[i][0] == ws){
-            return pairs[i][1];
-        } else if(pairs[i][1] == ws){
-            return pairs[i][0];
+    for(let i=games.length-1; i>=0; i--){
+        if(games[i].playerA == ws){
+            return games[i].playerB;
+        }else if(games[i].playerB == ws){
+            return games[i].playerA;
         }
     }
     return null;
 }
+
+// Returns game a websocket is in
+const getGame = function(ws){
+    for(let i=games.length-1; i>=0; i--){
+        if(games[i].playerA == ws || games[i].playerB == ws){
+            return games[i];
+        }
+    }
+    return null;
+}
+
+// Occasionally clean up games list (every 30s)
+setInterval(function(){
+    for(let i=0; i<games.length; i++){
+        if(games[i].status == "DONE"){
+            console.log(`Size before removing game was ${games.length}`);
+            games.splice(i, 1);
+            console.log("Removed a game");
+            console.log(`New size of games list is ${games.length}`);
+        }
+    }
+}, 30000);
 
 app.use(express.static(__dirname + "/public"));
 server.listen(port);

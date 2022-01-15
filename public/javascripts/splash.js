@@ -35,8 +35,9 @@ socket.onmessage = function(event){
         displayLead2.textContent = "Player2:\u0009" + message.lead2;
         displayLead3.textContent = "Player3:\u0009" + message.lead3;
     }
-    
+    console.log("Stats supposed to be updated, ex [ONGOING GAMES] " + message.ongoingGames);
 }
+
 //////////// Basic page functionality //////////////////
 var x = true;
 var toDim = document.querySelectorAll(".dim");
