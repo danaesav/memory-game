@@ -94,10 +94,12 @@ wss.on("connection", function (ws) {
                 }))
             }
         }
+        // User wants to play again, is redirected to splash screen
         else if(message.status == "again"){
             statistics.playersOnline--;
             websockets.delete(ws);
         } 
+        // User wants to end the game short and leave the game
         else if(message.status == "quit"){
             getOpponent(ws).send(JSON.stringify({
                 purpose: "victory",
@@ -110,6 +112,7 @@ wss.on("connection", function (ws) {
             websockets.delete(ws);
             sendUpdatedStats();
         }
+        // Game is finished, update leaderboard if needed
         else if(message.status == "gameFinished"){
             const newTime = message.time;
             if(statistics.leaderBoard.first>newTime){
@@ -124,6 +127,7 @@ wss.on("connection", function (ws) {
             }
             sendUpdatedStats();
         }
+        // Cancel search for game
         else if(message.status == "cancel"){
             queue = [];
             statistics.playersOnline--;

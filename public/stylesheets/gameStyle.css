@@ -162,6 +162,9 @@ hr{
 .found{
   background-color: #c3c3c3;
 }
+.hide{
+  opacity: 0;
+}
   
 ul {
   display: flex;
