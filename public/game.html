@@ -117,19 +117,19 @@
     </div>
 
     <div id="popUp">
-      <p class="dim text" id="popUpText"><em>Do you really want to quit?</em></p>
-      <form method="get" action="/">
-        <button class="dim btn" id="yesBtn" type="submit">Yes</button>
+      <p class="text" id="popUpText"><em>Do you really want to quit?</em></p>
+      <form onsubmit="quited()" method="get" action="/">
+        <button class="btn" id="yesBtn" type="submit">Yes</button>
       </form>
-      <button class="dim btn" id="noBtn" type="button">No</button>
+      <button class="btn" id="noBtn" type="button">No</button>
     </div>
 
     <div id="finPopUp">
-      <p class="dim text" id="popUpText2"></p>
+      <p class="text" id="popUpText2"></p>
       <form method="get" action="/">
-        <button class="dim btn" id="againBtn" type="submit">Again</button>
+        <button class="btn" id="againBtn" type="submit">Again</button>
       </form>
-      <button class="dim btn" id="okBtn" type="button">Okay</button>
+      <button class="btn" id="okBtn" type="button">Okay</button>
     </div>
 
     <div class="pop" id="popUpWait">

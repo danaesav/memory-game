@@ -205,7 +205,7 @@ ul {
 }
 
 #popUpText2::before {
-  content: "You finished in ";
+  content: "You ";
 }
 
 #popUpWait {

@@ -7,6 +7,7 @@ const port = process.argv[2];
 const app = express();
 const statistics = require("./statistics.js");
 const game = require("./gameInfo.js");
+const { playersOnline } = require("./statistics.js");
 
 const server = http.createServer(app);
 const wss = new websocket.Server({ server });
@@ -67,6 +68,7 @@ wss.on("connection", function (ws) {
                     statistics.completedGames++;
                     sendUpdatedStats();
                 }
+                websockets.delete(ws);
             }
             statistics.playersOnline--;
             websockets.delete(ws);
@@ -77,20 +79,34 @@ wss.on("connection", function (ws) {
             const newScore = message.newScore;
             if(newScore == 10){
                 getOpponent(ws).send(JSON.stringify({
-                    purpose: "lost",
+                    purpose: "loss",
                     reason: "Opponent got them all first!"
                 }))
                 statistics.ongoingGames--;
                 statistics.completedGames++;
                 sendUpdatedStats();
-            }else{
+            } else{
                 getOpponent(ws).send(JSON.stringify({
                     purpose: "updateScores",
                     opScore: message.newScore
                 }))
             }
         }
-
+        else if(message.status == "again"){
+            statistics.ongoingGames++;
+            statistics.completedGames--;
+            websockets.delete(ws);
+        } else if(message.status == "quit"){
+            getOpponent(ws).send(JSON.stringify({
+                purpose: "victory",
+                reason: "Opponent left!"
+            }))
+            statistics.ongoingGames--;
+            statistics.completedGames++;
+            sendUpdatedStats();
+            websockets.delete(ws);
+            sendUpdatedStats();
+        }
     });
 });
 

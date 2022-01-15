@@ -19,8 +19,29 @@ var displayOpponentScore = document.getElementById("opponentScore");
 let score = 0;
 let seconds = 0;
 let done = false;
+let disable = false;
+let quit = false;
 
 const socket = new WebSocket("ws://localhost:3000/play");
+
+document.getElementById("againBtn").addEventListener("click", sendAgain);
+// document.getElementById("yesBtn").addEventListener("click", quited);
+
+function sendAgain() {
+    disable = true;
+    socket.send(JSON.stringify({
+        from: "gameScreen",
+        status: "again"
+    }));
+}
+
+function quited() {
+    disable = true;
+    socket.send(JSON.stringify({
+        from: "gameScreen",
+        status: "quit"
+    }));
+}
 
 socket.onopen = function () {
     socket.send(JSON.stringify({
@@ -29,11 +50,13 @@ socket.onopen = function () {
     }));
 };
 
-window.onbeforeunload = function(){
-    socket.send(JSON.stringify({
-        from: "gameScreen",
-        status: "left"
-    }));
+window.onbeforeunload = function () {
+    if(!disable){
+        socket.send(JSON.stringify({
+            from: "gameScreen",
+            status: "left"
+        }));
+    }
 };
 
 socket.onmessage = function(event){
@@ -45,25 +68,22 @@ socket.onmessage = function(event){
     }else if(message.purpose == "start"){
         console.log("You may start");
         closeWaitingPopUp();
+        startTimer();
     }else if(message.purpose == "updateScores"){
         console.log("Score must be updated :(");
         displayOpponentScore.textContent = "Opponent score: " + message.opScore * 10+ "%";
-    }else if(message.purpose == "victory"){
+    } else if(message.purpose == "victory"){
         console.log("You won!");
+        finPopUpText.textContent = "won because opponent left!";
+        disable = true;
+        activateFinish();
+    } else if(message.purpose == "loss"){
+        console.log("You lost!");
+        finPopUpText.textContent = "lost! Opponent finished first.";
+        activateFinish();
     }
     
 }
-
-/*yesBtn.onclick = function() {
-    socket.send("goingBack");
-    console.log("Going back");
-}
-
-againBtn.onclick = function() {
-    socket.send("goingBack");
-    console.log("Going back");
-}*/
-
 
 
 /////////// Update timer every second ////////////////
@@ -175,7 +195,6 @@ for(let i=0; i<front.length; i++){
                     }))
 
                     yourScore.textContent = "Your score: " + scoreDis + "%";
-                    console.log("here");
                     front[pair[0]].className = "front open";
                     front[pair[1]].className = "front open";
 
@@ -186,7 +205,7 @@ for(let i=0; i<front.length; i++){
                     pair = [];
                     id = [];
                     if(scoreDis==100) {   
-                        finPopUpText.textContent = seconds + " seconds!";
+                        finPopUpText.textContent = "won in " + seconds + " seconds!";
                         activateFinish();
                         pause();
                     }
