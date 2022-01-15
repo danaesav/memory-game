@@ -121,7 +121,7 @@ for(let i=0; i<front.length; i++){
                     socket.send(JSON.stringify({
                         from : "gameScreen",
                         status: "playing",
-                        newScore: score 
+                        newScore: score
                     }))
 
                     yourScore.textContent = "Your score: " + scoreDis + "%";
@@ -138,6 +138,11 @@ for(let i=0; i<front.length; i++){
                         finPopUpText.textContent = "won in " + seconds + " seconds!";
                         activateFinish();
                         pause();
+                        socket.send(JSON.stringify({
+                            from : "gameScreen",
+                            status: "gameFinished",
+                            time: seconds
+                        }))
                     }
                 }, 1000);
             } else if (!found.includes(id[0]) && !found.includes(id[1])) {

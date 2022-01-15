@@ -25,7 +25,6 @@ let quit = false;
 const socket = new WebSocket("ws://localhost:3000/play");
 
 document.getElementById("againBtn").addEventListener("click", sendAgain);
-// document.getElementById("yesBtn").addEventListener("click", quited);
 
 function sendAgain() {
     disable = true;

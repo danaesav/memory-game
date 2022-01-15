@@ -2,6 +2,9 @@
 const displayCompletedGames = document.getElementById("numberCompletedGames");
 const displayPlayersOnline = document.getElementById("numberPlayersOnline");
 const displayOngoingGames = document.getElementById("numberOngoingGames");
+const displayLead1 = document.getElementById("L1");
+const displayLead2 = document.getElementById("L2");
+const displayLead3 = document.getElementById("L3");
 
 ///////// Web socket /////////////////
 const socket = new WebSocket("ws://localhost:3000");
@@ -28,6 +31,9 @@ socket.onmessage = function(event){
         displayCompletedGames.textContent = message.completedGames;
         displayPlayersOnline.textContent = message.playersOnline;
         displayOngoingGames.textContent = message.ongoingGames;
+        displayLead1.textContent = "Player1:\u0009" + message.lead1;
+        displayLead2.textContent = "Player2:\u0009" + message.lead2;
+        displayLead3.textContent = "Player3:\u0009" + message.lead3;
     }
     
 }

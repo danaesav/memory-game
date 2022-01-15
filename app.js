@@ -7,7 +7,8 @@ const port = process.argv[2];
 const app = express();
 const statistics = require("./statistics.js");
 const game = require("./gameInfo.js");
-const { playersOnline } = require("./statistics.js");
+const { playersOnline, leaderBoard } = require("./statistics.js");
+const { stat } = require("fs");
 
 const server = http.createServer(app);
 const wss = new websocket.Server({ server });
@@ -94,8 +95,7 @@ wss.on("connection", function (ws) {
             }
         }
         else if(message.status == "again"){
-            statistics.ongoingGames++;
-            statistics.completedGames--;
+            statistics.playersOnline--;
             websockets.delete(ws);
         } 
         else if(message.status == "quit"){
@@ -105,8 +105,23 @@ wss.on("connection", function (ws) {
             }))
             statistics.ongoingGames--;
             statistics.completedGames++;
+            statistics.playersOnline--;
             sendUpdatedStats();
             websockets.delete(ws);
+            sendUpdatedStats();
+        }
+        else if(message.status == "gameFinished"){
+            const newTime = message.time;
+            if(statistics.leaderBoard.first>newTime){
+                statistics.leaderBoard.third = statistics.leaderBoard.second;
+                statistics.leaderBoard.second = statistics.leaderBoard.first;
+                statistics.leaderBoard.first = newTime;
+            } else if(statistics.leaderBoard.second>newTime){
+                statistics.leaderBoard.third = statistics.leaderBoard.second;
+                statistics.leaderBoard.second = newTime;
+            } else if(statistics.leaderBoard.third>newTime){
+                statistics.leaderBoard.third = newTime;
+            }
             sendUpdatedStats();
         }
         console.log("[PAIRS] " + pairs.length + ", [QUEUE] " + queue.length);
@@ -120,7 +135,10 @@ let sendUpdatedStats = function(){
             purpose: "updateStats",
             completedGames : statistics.completedGames,
             playersOnline : statistics.playersOnline,
-            ongoingGames : statistics.ongoingGames
+            ongoingGames : statistics.ongoingGames,
+            lead1: statistics.leaderBoard.first,
+            lead2: statistics.leaderBoard.second,
+            lead3: statistics.leaderBoard.third
         }))
     })
 }
@@ -135,15 +153,6 @@ const getOpponent = function(ws){
         }
     }
     return null;
-}
-
-// Returns pair in which th websocket is found
-const getPair = function(ws){
-    pairs.forEach(function(pair){
-        if(pair[0] == ws || pair[1] == ws){
-            return pair;
-        }
-    })
 }
 
 app.use(express.static(__dirname + "/public"));
