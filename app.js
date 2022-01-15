@@ -153,7 +153,7 @@ const getOpponent = function(ws){
     for(let i=pairs.length-1; i>=0; i--){
         if(pairs[i][0] == ws){
             return pairs[i][1];
-        }else if(pairs[i][1]){
+        } else if(pairs[i][1] == ws){
             return pairs[i][0];
         }
     }
