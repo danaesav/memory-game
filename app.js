@@ -124,6 +124,11 @@ wss.on("connection", function (ws) {
             }
             sendUpdatedStats();
         }
+        else if(message.status == "cancel"){
+            queue = [];
+            statistics.playersOnline--;
+            websockets.delete(ws);
+        }
         console.log("[PAIRS] " + pairs.length + ", [QUEUE] " + queue.length);
     });
 });

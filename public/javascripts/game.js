@@ -15,6 +15,7 @@ var images_names = ["architecture.jpg", "aula.jpg", "church.jpg", "EEMCS.jpg", "
 var yesBtn = document.getElementById('yesBtn');
 var againBtn = document.getElementById('againBtn');
 var displayOpponentScore = document.getElementById("opponentScore");
+var cancelBtn = document.getElementById("cancelBtn");
 
 let score = 0;
 let seconds = 0;
@@ -25,6 +26,14 @@ let quit = false;
 const socket = new WebSocket("ws://localhost:3000/play");
 
 document.getElementById("againBtn").addEventListener("click", sendAgain);
+
+function cancel() {
+    disable = true;
+    socket.send(JSON.stringify({
+        from: "gameScreen",
+        status: "cancel"
+    }));
+}
 
 function sendAgain() {
     disable = true;
