@@ -93,14 +93,23 @@ hr{
     font-size: 2.7vw;
 }
 
-#yesBtn, #againBtn{
+#yesBtn{
   left: 7.44%;
   right: auto;
   top: 42.29%;
   bottom: 18.06%;
 }
 
-#noBtn, #okBtn{
+#againBtn{
+  left:35%;
+  right:auto;
+  top: 42.29%;
+  bottom: 18.06%;
+  font-size: 2vh;
+  font-size: 2.7vw;
+}
+
+#noBtn{
   left: auto;
   right: 7.44%;
   top: 41.29%;

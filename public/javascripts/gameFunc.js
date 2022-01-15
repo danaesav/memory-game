@@ -89,7 +89,7 @@ function activateFinish(){
     }
 }
 
-okBtn.addEventListener("click", disactivateFinish);
+// okBtn.addEventListener("click", disactivateFinish);
 
 function disactivateFinish(){
     finPopUp.style.display='none';
