@@ -5,7 +5,7 @@ const displayOngoingGames = document.getElementById("numberOngoingGames");
 
 ///////// Web socket /////////////////
 // const socket = new WebSocket("ws://localhost:3000");
-const socket = new WebSocket("ws://memorygameiliasdanae.herokuapp.com");
+const socket = new WebSocket("ws:https://memorygameiliasdanae.herokuapp.com");
 
 socket.onopen = function () {
     socket.send(JSON.stringify({
