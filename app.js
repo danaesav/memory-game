@@ -8,16 +8,19 @@ const app = express();
 const statistics = require("./statistics.js");
 const game = require("./game.js");
 
+app.set("views", __dirname + "/views");
+app.set("view engine", "ejs");
+
 
 const server = http.createServer(app);
 const wss = new websocket.Server({ server });
-const websockets = new Set();       
+const websockets = new Set(); 
 let games = []
 let queue = []
 
 ////////// Routes //////////////////
 app.get('/', function (req, res) {
-    res.sendFile("splash.html", {root: "./public"});
+    res.render("splash.ejs", statistics);
 })
 
 app.get('/play', function (req, res) {
@@ -70,7 +73,11 @@ wss.on("connection", function (ws) {
                     sendUpdatedStats();
                 }
                 websockets.delete(ws);
-                getGame(ws).setDone(getOpponent(ws));
+                if(getGame(ws)!=null){
+                    getGame(ws).setDone();
+                }else{
+                    queue = [];
+                }
             }
             statistics.playersOnline--;
             websockets.delete(ws);
@@ -90,7 +97,11 @@ wss.on("connection", function (ws) {
                 }))
                 statistics.ongoingGames--;
                 statistics.completedGames++;
-                getGame(ws).setDone(ws);
+                if(getGame(ws)!=null){
+                    getGame(ws).setDone();
+                }else{
+                    queue = [];
+                }
                 sendUpdatedStats();
             }
         }
@@ -109,7 +120,11 @@ wss.on("connection", function (ws) {
             statistics.completedGames++;
             statistics.playersOnline--;
             websockets.delete(ws);
-            getGame(ws).setDone(getOpponent(ws));
+            if(getGame(ws)!=null){
+                getGame(ws).setDone();
+            }else{
+                queue = [];
+            }
             sendUpdatedStats();
         }
         // game is finished, update leaderboard if needed
@@ -146,10 +161,7 @@ let sendUpdatedStats = function(){
             purpose: "updateStats",
             completedGames : statistics.completedGames,
             playersOnline : statistics.playersOnline,
-            ongoingGames : statistics.ongoingGames,
-            lead1: statistics.leaderBoard.first,
-            lead2: statistics.leaderBoard.second,
-            lead3: statistics.leaderBoard.third
+            ongoingGames : statistics.ongoingGames
         }))
     })
 }
