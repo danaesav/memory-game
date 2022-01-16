@@ -4,9 +4,6 @@ const displayPlayersOnline = document.getElementById("numberPlayersOnline");
 const displayOngoingGames = document.getElementById("numberOngoingGames");
 
 ///////// Web socket /////////////////
-// const socket = new WebSocket("ws://localhost:3000");
-// const socket = new WebSocket("ws:https://memorygameiliasdanae.herokuapp.com");
-
 var HOST = location.origin.replace(/^http/, 'ws')
 const socket = new WebSocket(HOST);
 

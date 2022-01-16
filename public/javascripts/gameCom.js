@@ -26,10 +26,6 @@ let quit = false;
 var HOST = location.origin.replace(/^http/, 'ws')
 const socket = new WebSocket(HOST);
 
-// const socket = new WebSocket("wss://localhost:3000/play");
-// const socket = new WebSocket("ws:https://memorygameiliasdanae.herokuapp.com/play");
-
-
 document.getElementById("againBtn").addEventListener("click", sendAgain);
 
 function cancel() {

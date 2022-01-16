@@ -3,7 +3,7 @@ const express = require("express");
 const http = require("http");
 const websocket = require("ws");
 
-const port = process.env.PORT || 3000 // process.argv[2];
+const port = process.env.PORT || 3000
 const app = express();
 const statistics = require("./statistics.js");
 const game = require("./game.js");
