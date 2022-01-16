@@ -24,7 +24,7 @@ let disable = false;
 let quit = false;
 
 // const socket = new WebSocket("ws://localhost:3000/play");
-const socket = new WebSocket("ws://www.memorygameiliasdanae.herokuapp.com:3000/play");
+const socket = new WebSocket("ws://memorygameiliasdanae.herokuapp.com/play");
 
 document.getElementById("againBtn").addEventListener("click", sendAgain);
 

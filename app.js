@@ -3,7 +3,7 @@ const express = require("express");
 const http = require("http");
 const websocket = require("ws");
 
-const port = process.argv[2];
+const port = process.env.PORT || 3000 // process.argv[2];
 const app = express();
 const statistics = require("./statistics.js");
 const game = require("./game.js");
@@ -17,6 +17,7 @@ const wss = new websocket.Server({ server });
 const websockets = new Set(); 
 let games = []
 let queue = []
+
 
 ////////// Routes //////////////////
 app.get('/', function (req, res) {
@@ -201,4 +202,8 @@ setInterval(function(){
 }, 30000);
 
 app.use(express.static(__dirname + "/public"));
-server.listen(port);
+// server.listen(port);
+server.listen(port,() => {
+    console.log(`Server running at port `+port);
+  });
+  
