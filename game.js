@@ -1,13 +1,10 @@
 ///////// Basic contructor design pattern //////////////////////
-function Game(id){
-    this.id = id;
-    this.playerA = null;
-    this.playerB = null;
-    this.winner = null;
+function Game(playerA, playerB){
+    this.playerA = playerA;
+    this.playerB = playerB;
     this.status = "PLAYING";
 
-    this.setWinner = function(winner){
-        this.winner = winner;
+    this.setDone = function(){
         this.status = "DONE";
     }
 }

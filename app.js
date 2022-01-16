@@ -14,7 +14,6 @@ const wss = new websocket.Server({ server });
 const websockets = new Set();       
 let games = []
 let queue = []
-let gameID = 0;
 
 ////////// Routes //////////////////
 app.get('/', function (req, res) {
@@ -42,9 +41,7 @@ wss.on("connection", function (ws) {
                     }))
                 }else if(queue.length == 1){
                     queue.push(ws);
-                    newGame = new game.Game(gameID++);
-                    newGame.playerA = queue[0];
-                    newGame.playerB = queue[1];
+                    newGame = new game.Game(queue[0], queue[1]);
                     games.push(newGame);
                     statistics.ongoingGames++;
                     sendUpdatedStats();
@@ -73,7 +70,7 @@ wss.on("connection", function (ws) {
                     sendUpdatedStats();
                 }
                 websockets.delete(ws);
-                getGame(ws).setWinner(getOpponent(ws));
+                getGame(ws).setDone(getOpponent(ws));
             }
             statistics.playersOnline--;
             websockets.delete(ws);
@@ -93,7 +90,7 @@ wss.on("connection", function (ws) {
                 }))
                 statistics.ongoingGames--;
                 statistics.completedGames++;
-                getGame(ws).setWinner(ws);
+                getGame(ws).setDone(ws);
                 sendUpdatedStats();
             }
         }
@@ -112,7 +109,7 @@ wss.on("connection", function (ws) {
             statistics.completedGames++;
             statistics.playersOnline--;
             websockets.delete(ws);
-            getGame(ws).setWinner(getOpponent(ws));
+            getGame(ws).setDone(getOpponent(ws));
             sendUpdatedStats();
         }
         // game is finished, update leaderboard if needed
